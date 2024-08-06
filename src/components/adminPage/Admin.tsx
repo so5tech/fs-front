@@ -18,12 +18,13 @@ const UserList = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
+    const user:any = localStorage.getItem("user");
+    const token = JSON.parse(user).token;
     const fetchUsers = async () => {
         try {
             let url = import.meta.env.VITE_Base_Url? import.meta.env.VITE_Base_Url : "https://project1-9vsw.onrender.com"
             url = url + "/bo/apis/user/"
-            const response = await axios.get(url);
+            const response = await axios.get(url, {headers: { Authorization: `Bearer ${token}` }});
             setUsers(response.data.data);
         } catch (error: any) {
             setError(error.message);

@@ -25,14 +25,16 @@ const UserComp: React.FC<UserProps> = ({ user, onRefresh }) => {
 //     margin: '5px 0',
 //     borderRadius: '5px', // add some border radius for a smoother look
 //   };
-
+  const user_data:any = localStorage.getItem("user");
+  const token = JSON.parse(user_data).token;
   const handleRejectUser = async (user: any) => {
     try{
         console.log('Rejected user:', user);
             let url = import.meta.env.VITE_Base_Url ? import.meta.env.VITE_Base_Url : "https://project1-9vsw.onrender.com"
             url = url + `/bo/apis/user/softDelete/${user._id}`
         const response = await axios.post(url, 
-            user
+            user,
+            {headers: { Authorization: `Bearer ${token}`}}
           );
           console.log('User Rejected successfully:', response.data);
           onRefresh();
@@ -49,7 +51,8 @@ const UserComp: React.FC<UserProps> = ({ user, onRefresh }) => {
         let url = import.meta.env.VITE_Base_Url ? import.meta.env.VITE_Base_Url : "https://project1-9vsw.onrender.com"
             url = url + `/bo/apis/user/accept/${user._id}`
         const response = await axios.post(url , 
-            user
+            user,
+            {headers: { Authorization: `Bearer ${token}`}}
           );
           console.log('User Accept successfully:', response.data);
           onRefresh();

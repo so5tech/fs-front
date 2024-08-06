@@ -24,13 +24,12 @@ function Login() {
                 email, password
             })
             if (res.status === 200) {
-                console.log(res.data.data.user)
                 const user = {
                     id: res.data.data.user._id,
                     email: res.data.data.user.email,
-                    name: res.data.data.user.name
+                    name: res.data.data.user.name,
+                    token: res.data.data.token
                 }
-                console.log(user, "Login")
                 localStorage.setItem("user", JSON.stringify(user));
                 setUser(JSON.stringify(user)); // Update the state to trigger useEffect
 
