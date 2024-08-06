@@ -1,0 +1,47 @@
+.signup {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #85ad9d; /* Background color for container */
+    position: fixed; /* Prevent scrolling issues */
+    top: 0;
+    left: 0;
+
+}
+
+.signup-form {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    /* margin-bottom: 10px; */
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="f-text"] {
+    display: block;
+    align-items: center;
+    flex-direction: column;
+    width: 40vh;
+    height: 3.5vh;
+    margin-bottom: 10px;
+}
+
+.signup-bt {
+    align-items: center;
+    color: #fbbdb7;
+    background-color: rgb(21, 149, 27);
+    width: 20vh;
+    height: 4vh;
+
+}
+
+.login-link {
+    color: rgb(43, 1, 82);
+}

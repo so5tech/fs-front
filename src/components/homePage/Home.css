@@ -1,0 +1,27 @@
+.logout-bt {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    height: 4vh;
+    font-size: 21px;
+    color:bisque;
+    background-color: black;
+    
+}
+
+.admin-bt {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: absolute;
+    top: 10px;
+    right: 120px;
+    height: 4vh;
+    font-size: 21px;
+    color:bisque;
+    background-color: black;
+    
+}
