@@ -1,3 +1,27 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; Prevents scroll bars from appearing */
+    overflow-x: hidden; /* Prevents vertical scroll bars */
+    overflow-y: auto; /* Allows horizontal scrolling if needed */
+    background-color: rgb(202, 231, 222);
+}
+
+.responsive-image {
+    width: 100vw; /* 100% of the viewport width */
+    height: 50vh; /* 50% of the viewport height */
+    object-fit: cover; /* Ensures the image covers the entire area */
+    display: block; /* Ensures the image is a block element */
+    position: relative; /* Ensures the image respects its container's position */
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+}
+
 .logout-bt {
     display: flex;
     justify-content: flex-end;
@@ -25,3 +49,4 @@
     background-color: black;
     
 }
+

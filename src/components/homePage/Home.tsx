@@ -70,8 +70,8 @@ const Home: React.FC = () => {
       <div className="center-flex"><p>Electricity Theft Detection In Smart Grid.</p><p>&nbsp;Hello {user.name}, Welcome!</p>
       </div>
 
-      <img className="responsive-image" src={`../../public/image1.jpg`} alt="Example" />
-      <div className="App">
+      <img className="responsive-image" src="https://plus.unsplash.com/premium_photo-1716565030772-35240a4de4a4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="This Project is ment for detecting manupulated data using pattern." />
+      <div className="t-text">
         <h1>Time Series Data Input</h1>
         <TimeSeriesInput />
       </div>
