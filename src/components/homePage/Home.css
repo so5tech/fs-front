@@ -64,7 +64,7 @@ html, body {
     
 }
 
-/* .inv-bt {
+.inv-bt {
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
@@ -76,7 +76,7 @@ html, body {
     color:bisque;
     background-color: black;
     
-} */
+}
 
 /* Shooting star background */
 @keyframes shooting-star-bg {
@@ -136,7 +136,7 @@ html, body {
     transform: translate(-50%, -50%);
   }
   
-  .inv-bt {
+  .shop-bt {
     position: relative;
     display: inline-block;
     padding: 20px 60px;
@@ -155,7 +155,7 @@ html, body {
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
   }
   
-  .inv-bt::before {
+  .shop-bt::before {
     content: '';
     position: absolute;
     top: -5px;
@@ -172,17 +172,17 @@ html, body {
     transition: opacity 0.4s ease;
   }
   
-  .inv-bt:hover::before {
+  .shop-bt:hover::before {
     transform: scale(1.6);
     opacity: 1;
   }
   
-  .inv-bt:hover {
+  .shop-bt:hover {
     transform: translateY(-10px);
     box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
   }
   
-  .inv-bt:active {
+  .shop-bt:active {
     transform: translateY(0);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   }

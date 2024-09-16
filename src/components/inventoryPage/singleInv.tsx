@@ -9,8 +9,7 @@ import { PipelineWithHoverProps } from './types';
 
 const SingleInventory: React.FC<PipelineWithHoverProps> = ({ data }) => {
     const [hovered, setHovered] = useState(false);
-    alert(hovered);
-
+    console.log(hovered)
     const stageColors = [
         { threshold: 3, color: 'red' },
         { threshold: 6, color: 'yellow' },

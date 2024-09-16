@@ -87,6 +87,16 @@ const Home: React.FC = () => {
       console.log(e)
     }
   }
+  async function Inventory(e: any) {
+    e.preventDefault();
+    try {
+      setUrlPathValue("/inventory")
+      // navigate("/inventory", { replace: true });
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
 
   console.log(user.user.name);
 
@@ -95,8 +105,9 @@ const Home: React.FC = () => {
       <button className='logout-bt' onClick={Logout}>Logout</button>
       <button className='admin-bt' onClick={Admin}>Admin</button>
       <button className='edt-bt' onClick={EDT}>EDT</button>
+      <button className='inv-bt' onClick={Inventory}>Inventory</button>
       <div className="button-wrapper">
-        <button className="inv-bt" onClick={shop}>Shop</button>
+        <button className="shop-bt" onClick={shop}>Shop</button>
       </div>
 
 
