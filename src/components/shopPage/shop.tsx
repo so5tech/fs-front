@@ -189,7 +189,7 @@ const ShopHome: React.FC = () => {
                         value={searchQuery}
                         onChange={(e) => handleSearch(e.target.value)} // Trigger search on input change
                     />
-                    ;
+                    
                     <button className="cart-btn" onClick={toggleCart}>
                         Cart
                     </button>
