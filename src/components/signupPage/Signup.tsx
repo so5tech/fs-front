@@ -44,7 +44,7 @@ function Signup() {
     }
 
     try {
-        let url = import.meta.env.VITE_Base_Url ? import.meta.env.VITE_Base_Url : "https://project1-9vsw.onrender.com"
+        let url = import.meta.env.VITE_Base_Url || "http://localhost:3000"
         url = url + "/bo/apis/user/"
       const response = await axios.post(url, 
         user

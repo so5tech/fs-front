@@ -13,24 +13,15 @@ interface UserProps {
     is_delete: boolean;
   };
   onRefresh: () => void;
+  token: string;
 }
 
-const UserComp: React.FC<UserProps> = ({ user, onRefresh }) => {
-//   const userStyle = {
-//     display: 'flex',
-//     justifyContent: 'space-between',
-//     alignItems: 'center',
-//     padding: '10px',
-//     backgroundColor: '#f0f0f0', // lighter background color for better readability
-//     margin: '5px 0',
-//     borderRadius: '5px', // add some border radius for a smoother look
-//   };
-  const user_data:any = localStorage.getItem("user");
-  const token = JSON.parse(user_data).token;
+const UserComp: React.FC<UserProps> = ({ user, onRefresh, token }) => {
+
   const handleRejectUser = async (user: any) => {
     try{
         console.log('Rejected user:', user);
-            let url = import.meta.env.VITE_Base_Url ? import.meta.env.VITE_Base_Url : "https://project1-9vsw.onrender.com"
+            let url = import.meta.env.VITE_Base_Url || "http://localhost:3000"
             url = url + `/bo/apis/user/softDelete/${user._id}`
         const response = await axios.post(url, 
             user,
@@ -48,7 +39,7 @@ const UserComp: React.FC<UserProps> = ({ user, onRefresh }) => {
   const handleAcceptUser = async (user: any) => {
     try{
         console.log('Selected user:', user);
-        let url = import.meta.env.VITE_Base_Url ? import.meta.env.VITE_Base_Url : "https://project1-9vsw.onrender.com"
+        let url = import.meta.env.VITE_Base_Url || "http://localhost:3000"
             url = url + `/bo/apis/user/accept/${user._id}`
         const response = await axios.post(url , 
             user,

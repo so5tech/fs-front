@@ -1,0 +1,276 @@
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.shop-home {
+    padding: 20px;
+}
+
+.shop-details {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-width: 300px;
+}
+
+.shop-details h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.shop-details p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.shop-details strong {
+    font-weight: bold;
+}
+
+/* Grid and Flex Layouts */
+.items-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.Nav-sm {
+    display: flex;
+    gap: 20px;
+}
+
+.sm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* Adjust the gap between items */
+}
+
+.ShopCard {
+    flex: 1 1 200px;
+    min-width: 200px;
+    max-width: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Separator between items */
+.item-separator {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.item-separator::before,
+.item-separator::after {
+    content: "";
+    flex: 1;
+    border-top: 2px solid #ccc;
+    margin: 0 10px;
+}
+
+.item-separator span {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: bold;
+}
+
+/* Image Styles */
+.image-style {
+    width: 100%;
+    /* Make image responsive */
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    /* Maintain aspect ratio */
+}
+
+/* Quantity Control */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    margin: 10px 82px;
+}
+
+.quantity-control button {
+    padding: 5px 10px;
+    margin: 0 5px;
+}
+
+.quantity-control input {
+    width: 50px;
+    text-align: center;
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #218838;
+}
+
+.quantity-control.disabled,
+.add-to-cart-btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+input:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+/* Navbar Styles */
+.shop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.shop-nav {
+    position: relative;
+    /* Keep the nav static */
+    z-index: 1;
+    /* Ensure it's below the search input */
+}
+
+.search-input {
+    position: fixed;
+    /* Stay at the top */
+    top: 50px;
+    left: 50%;
+    /* Center the input horizontally */
+    transform: translateX(-50%);
+    z-index: 10;
+    /* Higher than other elements */
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+    /* Semi-transparent background */
+    border: 1px solid #ccc;
+    /* Light border */
+    border-radius: 20px;
+    /* Rounded corners */
+    transition: background-color 0.3s ease-in-out;
+    /* Smooth color transition */
+    outline: none;
+    /* Remove default focus outline */
+}
+
+.search-input:focus {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Less transparent on focus */
+}
+
+
+.shop-nav .cart-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    margin-right: 10px;
+}
+
+.shop-nav .cart-btn:hover {
+    color: #ff6347;
+}
+
+.cart-btn i {
+    font-size: 24px;
+}
+
+/* Cart Sidebar */
+.cart-sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+    padding-top: 60px;
+    z-index: 1;
+}
+
+.cart-sidebar.open {
+    width: 25vw;
+}
+
+.cart-sidebar h3 {
+    padding: 20px;
+}
+
+.cart-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-sidebar li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Proceed to Payment Button */
+.pyt-bt {
+    position: absolute;
+    bottom: 100px;
+    right: 20px;
+}
+
+.pyt-bt button {
+    background-color: #aecfb5;
+    color: #420808;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.pyt-bt button:hover {
+    background-color: #8db393;
+}
