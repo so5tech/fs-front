@@ -4,16 +4,39 @@ import ShopCard from './shopCard';
 import { CartItem, ShopItem } from './types';
 import Cart from './cart'; // Import the Cart component
 import axios from 'axios';
+import { Link, useNavigate } from "react-router-dom";
+
 
 
 const ShopHome: React.FC = () => {
-    const [user, setUser] = useState({ user: { name: "", _id: "", token: "" } });
+    const [user, setUser] = useState({ user: { name: "", _id: "", token: "", image: "" } });
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
     }, []);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    // const user = {
+    //     name: 'John Doe',
+    //     image: 'https://via.placeholder.com/50' // Replace with the actual user image URL
+    // };
+    const navigate = useNavigate();
+
+    async function Logout(e: any) {
+        e.preventDefault();
+        try {
+          localStorage.removeItem('user');
+          navigate("/", { replace: true });
+        }
+        catch (e) {
+          console.log(e)
+        }
+      }
+
+    const handleToggleDropdown = () => {
+        setDropdownOpen((prev) => !prev);
+    };
     const [items, setItems] = useState<ShopItem[]>([
         {
             _id: "1",
@@ -29,14 +52,14 @@ const ShopHome: React.FC = () => {
         }
     ]);
 
-    
+
 
     const [searchQuery, setSearchQuery] = useState<string>(''); // To store the search input
     // const [results, setResults] = useState<ShopItem[]>([]); // To store search results
     const [loading, setLoading] = useState<boolean>(false); // To show a loading state
     const [error, setError] = useState<string | null>(null); // To display errors
     const handleSearch = async (query: string) => {
-        if(loading || error){
+        if (loading || error) {
             alert("please wait");
         }
         setLoading(true); // Start loading
@@ -109,7 +132,7 @@ const ShopHome: React.FC = () => {
                 }));
 
                 const body = {
-                    user_id: user.user._id,
+                    user_id: user?.user._id,
                     item_list: item_list,
                     is_delete: false
                 };
@@ -148,7 +171,7 @@ const ShopHome: React.FC = () => {
 
 
 
-    
+
     const [cartOpen, setCartOpen] = useState(false);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const toggleCart = () => {
@@ -178,55 +201,74 @@ const ShopHome: React.FC = () => {
     const outOfStockItems = items.filter(item => !item?.current_stock);
     console
     return (
-        <div className="shop-home">
+        <div className="shop-home p-4">
             <div>
-                <div className="shop-nav">
-                    Daily Needs
-                    <input
-                        type="text"
-                        className="search-input"
-                        placeholder="Search for an item..."
-                        value={searchQuery}
-                        onChange={(e) => handleSearch(e.target.value)} // Trigger search on input change
-                    />
-                    <button className="cart-btn" onClick={toggleCart}>
-                        Cart
-                    </button>
+                <div className="shop-nav flex items-center justify-between mb-4">
+                    <h2 className="text-2xl font-semibold">Daily Needs</h2>
+                    <div className="flex items-center space-x-4">
+                        <input
+                            type="text"
+                            className="search-input px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Search for an item..."
+                            value={searchQuery}
+                            onChange={(e) => handleSearch(e.target.value)} // Trigger search on input change
+                        />
+                        <button className="cart-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300" onClick={toggleCart}>
+                            Cart
+                        </button>
+                        <div className="relative">
+                            {user.user.image ? (
+                                <img
+                                    src={user.user.image}
+                                    alt="User"
+                                    className="w-10 h-10 rounded-full cursor-pointer"
+                                    onClick={handleToggleDropdown}
+                                />
+                            ) : (
+                                <div
+                                    className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white cursor-pointer"
+                                    onClick={handleToggleDropdown}
+                                >
+                                    {user.user.name.charAt(0)} {/* Display first letter of the user's name */}
+                                </div>
+                            )}
+                            {dropdownOpen && (
+                                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-10">
+                                    <div className="py-2 px-4 text-gray-700">
+                                        <p className="font-semibold">{user.user.name}</p>
+                                        <button className="text-blue-600 hover:underline" onClick={() => alert('Navigating to My Orders')}>
+                                            My Orders
+                                        </button>
+                                        <button className="text-red-600 hover:underline" onClick={Logout}>
+                                            Logout
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
-
 
                 {cartOpen && (
                     <Cart items={cartItems} onClose={toggleCart} />
                 )}
-
             </div>
 
-            <div className="items-grid">
+            <div className="items-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
                 {inStockItems.map(item => (
-                    // <ShopCard
-                    //     key={item.id}
-                    //     item={item}
-                    //     onStatusChange={handleStatusChange}
-                    // />
-
-
-                    <ShopCard item={item} onAddToCart={handleAddToCart} />
-
+                    <ShopCard key={item._id} item={item} onAddToCart={handleAddToCart} />
                 ))}
-                <div className="item-separator">
-                    <span>Out of Stock Items</span>
-                </div>
-                {outOfStockItems.map(item => (
-                    // <ShopCard
-                    //     key={item.id}
-                    //     item={item}
-                    //     onStatusChange={handleStatusChange}
-                    // />
-                    <ShopCard item={item} onAddToCart={handleAddToCart} />
 
+                <div className="item-separator col-span-full text-center my-4">
+                    <span className="text-lg font-semibold">Out of Stock Items</span>
+                </div>
+
+                {outOfStockItems.map(item => (
+                    <ShopCard key={item._id} item={item} onAddToCart={handleAddToCart} />
                 ))}
             </div>
         </div>
+
 
     );
 }
