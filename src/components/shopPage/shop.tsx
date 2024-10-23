@@ -4,7 +4,7 @@ import ShopCard from './shopCard';
 import { CartItem, ShopItem } from './types';
 import Cart from './cart'; // Import the Cart component
 import axios from 'axios';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
